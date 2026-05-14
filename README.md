@@ -13,7 +13,10 @@
 curl -H "X-Tenant-ID: acme_corp" http://localhost:8000/events | json_pp
 ```
 - More examples can be found in [example.http](./example.http) file. (this can be directly used by vscode [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension)
-
+- You can also view/test the API via the fastAPI docs swagger UI 
+```
+http://localhost:8000/docs
+```
 
 ### Running tests
 - run `uv run pytest` (from project directory)
