@@ -1,9 +1,23 @@
 [project]
 name = "cs-events-api"
 version = "0.1.0"
-description = "Add your description here"
+description = "cs events api"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "apscheduler>=3.11.2",
     "fastapi[standard]>=0.136.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-env>=1.6.0",
+]
+
+[tool.fastapi]
+entrypoint = "app.main:app"
+
+[tool.pytest.ini_options]
+env_files = ".env.test"
+pythonpath = "."
