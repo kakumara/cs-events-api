@@ -1,8 +1,9 @@
 ### Key decisions and trade-offs
-1. Adopting an in memory store for events for simplicity. (dictionary based)
-2. Using FastAPI + uv as the API server/framework. This allowed faster and simpler implementation.
-3. Using a header variable to pass the tenant id. Once again for simplicity.
-4. Preffered `apscheduler` (over `fastapi_utils.tasks`) which seems to be a more popular approach.  
+1. Adopting an in memory store for events for simplicity. (dictionary based). Tenant isolation is handled using separate dictionaries per tenant.
+2. For each tenant, events are stored as a sub dictionary with `event_id` being the key. This allows to avoid duplicate events for the tenant.
+3. Using FastAPI + uv as the API server/framework. This allowed faster and simpler implementation.
+4. Using a header variable to pass the tenant id. Once again for simplicity.
+5. Preffered `apscheduler` (over `fastapi_utils.tasks`) which seems to be a more popular approach.  
 
 ### Further improvemnt points
 
