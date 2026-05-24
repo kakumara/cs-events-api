@@ -31,9 +31,10 @@ async def get_events_by_tenant(
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
-
-# validates and converts a provided datetime string to a comparable format (UTC datetime)
-# This provides a correct datetime comparison with events datastore
+"""
+Validates and converts a provided datetime string to a comparable format (UTC datetime)
+This provides a correct datetime comparison with events datastore
+""" 
 def validate_date_range(
     start_dt: Optional[str], end_dt: Optional[str]
 ) -> Tuple[Optional[datetime], Optional[datetime]]:
