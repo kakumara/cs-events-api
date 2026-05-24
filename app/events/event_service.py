@@ -40,8 +40,8 @@ class EventService:
     def find_events(
         self,
         tenant_id: str,
-        start_dt: Optional[datetime] = None,
-        end_dt: Optional[datetime] = None,
+        start_dt_utc: Optional[datetime] = None,
+        end_dt_utc: Optional[datetime] = None,
         action: Optional[str] = None,
         package: Optional[str] = None,
     ) -> list[Event] | None:
@@ -51,8 +51,8 @@ class EventService:
         found_events = []
         for event in self.__events_by_tenant.get(tenant_id, {}).values():
             if (
-                (start_dt is None or event.timestamp >= start_dt)
-                and (end_dt is None or event.timestamp <= end_dt)
+                (start_dt_utc is None or event.timestamp >= start_dt_utc)
+                and (end_dt_utc is None or event.timestamp <= end_dt_utc)
                 and (action is None or event.action == action)
                 and (package is None or event.package == package)
             ):

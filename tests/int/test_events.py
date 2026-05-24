@@ -92,6 +92,21 @@ def test_find_events_by_tenant_with_filters():
     )
 
 
+def test_find_events_by_tenant_with_filters_non_utc():
+    # test with only date and a date time with a non UTC timezone
+    response = client.get(
+        "/events?start_dt=2026-05-14&end_dt=2026-05-15T10:00:00%2B01:00&action=download&package=numpy",
+        headers={"X-Tenant-ID": "tenent_1"},
+    )
+    assert response.status_code == 200
+    events = response.json()
+    assert isinstance(events, list)
+    assert len(events) == 1
+    assert_event_data(
+        events[0], "tenent_1", "download", "numpy", "1.24.0", "release-bot"
+    )
+
+
 def assert_event_data(
     event, tenant_id, action, package, version, actor, timestamp=None
 ):

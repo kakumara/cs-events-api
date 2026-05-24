@@ -78,7 +78,7 @@ def test_find_events_with_filters_start_dt(
     service = prepare_service_with_data(tmp_path, monkeypatch)
 
     start_dt = datetime(2024, 1, 1, 1, 1, tzinfo=timezone.utc)
-    events = service.find_events(tenant_id=tenant_id, start_dt=start_dt)
+    events = service.find_events(tenant_id=tenant_id, start_dt_utc=start_dt)
 
     assert isinstance(events, list)
     assert len(events) == expected_count
@@ -103,7 +103,7 @@ def test_find_events_with_filters_end_dt(
 ):
     service = prepare_service_with_data(tmp_path, monkeypatch)
     end_dt = datetime(2024, 2, 2, 0, 0, tzinfo=timezone.utc)
-    events = service.find_events(tenant_id=tenant_id, end_dt=end_dt)
+    events = service.find_events(tenant_id=tenant_id, end_dt_utc=end_dt)
 
     assert isinstance(events, list)
     assert len(events) == expected_count
@@ -228,8 +228,8 @@ def test_find_events_with_filters_combined(
     service = prepare_service_with_data(tmp_path, monkeypatch)
     events = service.find_events(
         tenant_id=tenant_id,
-        start_dt=start_dt,
-        end_dt=end_dt,
+        start_dt_utc=start_dt,
+        end_dt_utc=end_dt,
         action=action,
         package=package,
     )

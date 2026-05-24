@@ -31,3 +31,9 @@ X-Tenant-ID: acme_corp
 # filter by a specific action and package and date range
 GET http://localhost:8000/events?action=download&package=django&start_dt=2025-03-14T00:00:00Z&end_dt=2025-03-14T23:59:59Z HTTP/1.1
 X-Tenant-ID: acme_corp
+
+
+### 
+# filter by a specific action and package and date range (non UTC)
+GET http://localhost:8000/events?action=download&package=django&start_dt=2025-03-14&end_dt=2025-03-14T20:00:00%2B01:00 HTTP/1.1
+X-Tenant-ID: acme_corp
